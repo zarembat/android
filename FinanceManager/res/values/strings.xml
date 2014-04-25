@@ -71,5 +71,6 @@
 		<string name="add_operation">Add operation</string>
 		<string name="opt_currency">Currency (no sleection = default currency)</string>
 		<string name="piechart">Create PieChart</string>
+		<string name="add_passwrod">Add password</string>
 	
 </resources>

@@ -37,7 +37,6 @@ import android.widget.Toast;
 public class StatisticsFragment extends Fragment {
 
 	Context context;
-	int current_user;
 	public LinearLayout layout;
 	Spinner months_spinner;
 	Spinner operations_spinner;
@@ -56,7 +55,6 @@ public class StatisticsFragment extends Fragment {
 			Bundle savedInstanceState) {
 		
 		int position = getArguments().getInt("position");
-		current_user = getArguments().getInt("current_user");
 		String[] menus = getResources().getStringArray(R.array.menus);
 		View v = inflater.inflate(R.layout.fragment_statistics, container, false);
 		getActivity().getActionBar().setTitle(menus[position]);
@@ -120,6 +118,6 @@ public class StatisticsFragment extends Fragment {
 	
 	public void createPieChart(String operations, String date, String currency){
 		
-		new CreatePieChartAsyncTask(getActivity(), this).execute(currency, current_user, date, operations);
+		new CreatePieChartAsyncTask(getActivity(), this).execute(currency, date, operations);
 	}
 }

@@ -71,8 +71,11 @@ public void addExpenseCategory(){
 				category_expence.setText("");
 				db.close();
 			}
-			else
+			else{
 				Toast.makeText(context, "Such expense category exists!", Toast.LENGTH_SHORT).show();
+				category_expence.setText("");
+			}
+				
 		}
 	}
 	
@@ -87,8 +90,11 @@ public void addExpenseCategory(){
 				db.close();
 				category_revenue.setText("");
 			}
-			else
+			else{
+				category_revenue.setText("");
 				Toast.makeText(context, "Such revenue category exists!", Toast.LENGTH_SHORT).show();
+			}
+				
 		}
 	}
 
@@ -104,8 +110,11 @@ public void addExpenseCategory(){
 				currency.setText("");
 				db.close();
 			}
-			else
+			else{
 				Toast.makeText(context, "Such currency exists!", Toast.LENGTH_SHORT).show();
+				currency.setText("");
+			}
+				
 		}
 	}
 	

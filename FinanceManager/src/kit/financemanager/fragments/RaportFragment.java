@@ -39,7 +39,6 @@ public class RaportFragment extends Fragment {
 	public TextView revenues;
 	public TextView balance;
 	Context context;
-	int current_user;
 	Button export;
 	
 	 public String _expenses = null;
@@ -52,7 +51,6 @@ public class RaportFragment extends Fragment {
 			Bundle savedInstanceState) {
 		
 		int position = getArguments().getInt("position");
-		current_user = getArguments().getInt("current_user");
 		String[] menus = getResources().getStringArray(R.array.menus);
 		View v = inflater.inflate(R.layout.fragment_raport, container, false);
 		getActivity().getActionBar().setTitle(menus[position]);
@@ -97,7 +95,7 @@ public class RaportFragment extends Fragment {
                 Object item = parent.getItemAtPosition(position);
                 //Toast.makeText(context, "" + position, Toast.LENGTH_SHORT).show();	
                 date = item.toString() + "-01";
-                new GetOperationsForReportAsyncTask(getActivity(), RaportFragment.this).execute(current_user, date);
+                new GetOperationsForReportAsyncTask(getActivity(), RaportFragment.this).execute(date);
                 
             }
             
@@ -110,7 +108,7 @@ public class RaportFragment extends Fragment {
 		export.setOnClickListener(new View.OnClickListener() {
 			   
 		    public void onClick(View view) {
-		    	new GenerateExcelReportAsyncTask(getActivity()).execute(date, current_user, _expenses, _revenues, _balalance);
+		    	new GenerateExcelReportAsyncTask(getActivity()).execute(date, _expenses, _revenues, _balalance);
 		    }
 			
 		});

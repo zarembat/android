@@ -71,7 +71,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 		String CREATE_SETTINGS_TABLE = "CREATE TABLE settings (" +
 				"settings_id INTEGER PRIMARY KEY AUTOINCREMENT," +
 				"currency_id INTEGER NOT NULL," +
-				"password VARCHAR(100) NOT NULL," +
+				"password VARCHAR(100)," +
 				"FOREIGN KEY(currency_id) REFERENCES currency(currency_id)" +
 			");";
 		
@@ -113,6 +113,9 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 		String 	INSERT_CURRENCY4 = "INSERT INTO currency (name)"+
 				"VALUES ('PLN')";
 		
+		String 	INSERT_SETTINGS = "INSERT INTO settings (currency_id)"+
+				"VALUES (0)";
+		
 		db.execSQL(CREATE_EXPENSES_TABLE);
 		db.execSQL(CREATE_EXPENSE_CATEGORIES_TABLE);
 		db.execSQL(CREATE_REVENUE_CATEGORIES_TABLE);
@@ -139,6 +142,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 		db.execSQL(INSERT_CURRENCY2);
 		db.execSQL(INSERT_CURRENCY3);
 		db.execSQL(INSERT_CURRENCY4);
+		
+		db.execSQL(INSERT_SETTINGS);
 		
 	}
 
@@ -392,7 +397,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 	    List<Expense> expenseList = new ArrayList<Expense>();
 	 
 	    SQLiteDatabase db = this.getWritableDatabase();
-	   // Cursor cursor = db.rawQuery("SELECT * FROM expenses", null);
 	    Cursor cursor = db.rawQuery("SELECT * FROM expenses ORDER BY date DESC, expense_id DESC LIMIT 5", null);
 
 	    if (cursor.moveToFirst()) {
@@ -615,11 +619,49 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 	    Cursor cursor = null;
 	    String password = null;
 
-	    cursor = db.rawQuery("SELECT password FROM settings", null);
+	    cursor = db.rawQuery("SELECT * FROM settings", null);
 	    if (cursor.moveToFirst()){
-			password = cursor.getString(0);
+			password = cursor.getString(2);
 		}
 		db.close();
 	    return password;
+	}
+	
+	public void setPassword(String password) {
+	    SQLiteDatabase db = this.getWritableDatabase();
+	 
+	    String strFilter = "settings_id=" + 1;
+	    ContentValues values = new ContentValues();
+	    values.put("password", password);
+	    db.update("settings", values, strFilter, null);
+	    
+	    db.close(); // Closing database connection
+	}
+	
+	public String getCurrentCurrency() {
+	    SQLiteDatabase db = this.getReadableDatabase();
+	    Cursor cursor = null;
+	    String currency = null;
+
+	    cursor = db.rawQuery("SELECT * FROM settings", null);
+	    if (cursor.moveToFirst()){	  
+	    	currency = cursor.getString(1);
+	    	cursor = db.rawQuery("SELECT * FROM currency WHERE currency_id=?", new String[] {String.valueOf(currency)});
+	    	if (cursor.moveToFirst())  
+	    		currency = cursor.getString(1);
+		}
+		db.close();
+	    return currency;
+	}
+	
+	public void setCurrentCurrency(int currency_id) {
+	    SQLiteDatabase db = this.getWritableDatabase();
+	 
+	    String strFilter = "settings_id=" + 1;
+	    ContentValues values = new ContentValues();
+	    values.put("currency_id", currency_id);
+	    db.update("settings", values, strFilter, null);
+	    
+	    db.close(); // Closing database connection
 	}
 }

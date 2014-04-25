@@ -59,7 +59,7 @@ public class MainActivity extends Activity {
 		
 		DatabaseHandler db = new DatabaseHandler(context);
 		String password = db.getPassword();
-		if (password != null)
+		if (password != null && !password.isEmpty())
 			checkPassword(password);
 		db.close();
 
@@ -258,7 +258,7 @@ public class MainActivity extends Activity {
     		public void onClick(View v) {
     			
     			DatabaseHandler db = new DatabaseHandler(context);
-				if (edit_password.getText().toString() == password){
+				if (edit_password.getText().toString().equals(password)){
     				db.close();
     				alertDialog.cancel();
 				}

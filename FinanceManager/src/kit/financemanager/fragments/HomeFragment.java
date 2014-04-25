@@ -30,10 +30,6 @@ public class HomeFragment extends Fragment{
 	public TextView expenses;
 	public TextView revenues;
 	public TextView balance;
-	
-	private static final String PREFERENCES_NAME = "myPreferences";
-    private static final String PREFERENCES_TEXT_FIELD = "EUR"; 
-    private SharedPreferences preferences;
     
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -45,14 +41,6 @@ public class HomeFragment extends Fragment{
 		getActivity().getActionBar().setTitle(menus[position]);
 		
 		context = getActivity().getApplicationContext();
-		preferences = getActivity().getSharedPreferences(PREFERENCES_NAME, Activity.MODE_PRIVATE);
-		String currency = preferences.getString(PREFERENCES_TEXT_FIELD, "");
-		if(currency.equals("")){
-			SharedPreferences.Editor preferencesEditor = preferences.edit();
-			 preferencesEditor.putString(PREFERENCES_TEXT_FIELD, "EUR");
-			 preferencesEditor.commit();
-			 currency = preferences.getString(PREFERENCES_TEXT_FIELD, "");
-		}
 		
 		int year = Calendar.getInstance().get(Calendar.YEAR);
 		int month = Calendar.getInstance().get(Calendar.MONTH)+1;	

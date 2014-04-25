@@ -28,8 +28,7 @@ public class GetOperationsForReportAsyncTask extends AsyncTask<Object, Void, Voi
 	
 	@Override
 	protected Void doInBackground(Object... params) {
-		int userId = (Integer) params[0];
-		String date = (String) params[1];
+		String date = (String) params[0];
 		DatabaseHandler db = new DatabaseHandler(activity.getApplicationContext());
         expensesL = db.getRaportExpenses(date, -1);
         revenuesL = db.getRaportRevenues(date, -1);
