@@ -38,11 +38,10 @@ public class GetOperationsAsyncTask extends AsyncTask<Object, Void, Void> {
 	@Override
 	protected Void doInBackground(Object... params) {
 
-		int current_user = (Integer) params[0];
-		String date = (String) params[1];
+		String date = (String) params[0];
 		DatabaseHandler db = new DatabaseHandler(activity.getApplicationContext());
-        expensesL = db.getAllExpenses(current_user, date);
-        revenuesL = db.getAllRevenues(current_user,date);
+        expensesL = db.getAllExpenses(date);
+        revenuesL = db.getAllRevenues(date);
         currenciesL = db.getAllCurrencies();
 		
 		return null;

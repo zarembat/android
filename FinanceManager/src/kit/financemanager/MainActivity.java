@@ -2,6 +2,7 @@ package kit.financemanager;
 
 import java.util.ArrayList;
 
+import kit.financemanager.db.DatabaseHandler;
 import kit.financemanager.fragments.AddOperationFragment;
 import kit.financemanager.fragments.ConfigurationFragment;
 import kit.financemanager.fragments.HomeFragment;
@@ -15,21 +16,24 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Fragment;
 import android.app.FragmentManager;
-import android.content.DialogInterface;
-import android.content.Intent;
+import android.content.Context;
 import android.content.res.TypedArray;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.NavUtils;
 import android.support.v4.widget.DrawerLayout;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
 
 public class MainActivity extends Activity {
 
@@ -43,17 +47,21 @@ public class MainActivity extends Activity {
     private ArrayList<NavDrawerItem> navDrawerItems;
     private NavDrawerListAdapter adapter;
     
-    int current_user;
-    
+    Context context;
+        
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		// Show the Up button in the action bar.
 		setupActionBar();
+		context = getApplicationContext();
 		
-		Intent intent = getIntent();
-		current_user = intent.getIntExtra("current_user", -1);
+		DatabaseHandler db = new DatabaseHandler(context);
+		String password = db.getPassword();
+		if (password != null)
+			checkPassword(password);
+		db.close();
 
         navMenuTitles = getResources().getStringArray(R.array.menus);
         navMenuIcons = getResources().obtainTypedArray(R.array.nav_drawer_icons);
@@ -154,7 +162,6 @@ public class MainActivity extends Activity {
     		
 			Bundle data = new Bundle();
 			data.putInt("position", position);
-			data.putInt("current_user", current_user);
 			fragment.setArguments(data);
 			
 			mDrawerLayout.closeDrawer(mDrawerList);
@@ -212,7 +219,7 @@ public class MainActivity extends Activity {
 		return super.onOptionsItemSelected(item);
 	}
 
-	@Override
+	/*@Override
 	public void onBackPressed() {
 		
 		final AlertDialog.Builder alert = new AlertDialog.Builder(this);
@@ -225,5 +232,49 @@ public class MainActivity extends Activity {
 	                MainActivity.super.onBackPressed();
 	            }
 	        }).create().show();
+	}*/
+	
+	public void checkPassword(final String password){
+		
+		final AlertDialog.Builder alert = new AlertDialog.Builder(this);
+
+		LayoutInflater li = LayoutInflater.from(this);
+		View view = li.inflate(R.layout.dialog_password, null);
+		
+		final EditText edit_password = (EditText) view
+				.findViewById(R.id.editText_password);
+		edit_password.setTextColor(Color.parseColor("#c9c9c9"));
+		
+	    alert.setView(view);
+	    
+	    final AlertDialog alertDialog = alert.create();
+	    alertDialog.show();
+	    alertDialog.setCanceledOnTouchOutside(false);
+	    
+        Button positive = (Button) alertDialog.findViewById(R.id.confirm);
+	    Button negative = (Button) alertDialog.findViewById(R.id.cancel);
+	    
+	    positive.setOnClickListener(new View.OnClickListener(){
+    		public void onClick(View v) {
+    			
+    			DatabaseHandler db = new DatabaseHandler(context);
+				if (edit_password.getText().toString() == password){
+    				db.close();
+    				alertDialog.cancel();
+				}
+				else
+					Toast.makeText(getApplicationContext(), "Wrong password", Toast.LENGTH_SHORT).show();
+					
+				db.close();
+
+    		}
+	   });
+	    
+	   negative.setOnClickListener(new View.OnClickListener(){
+			public void onClick(View v) {
+				MainActivity.super.onBackPressed();
+			}
+	    });
+    
 	}
 }

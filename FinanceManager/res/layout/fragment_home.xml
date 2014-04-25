@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/backgr" >
+
+    <ScrollView
+        android:id="@+id/scrollView1"
+         android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+       <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/textView_month"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:text="December"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="#c9c9c9"
+            android:textSize="35sp" />
+
+        <TextView
+            android:id="@+id/textView8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:text="@string/revenues_home"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="#5cb65e"
+            android:textSize="25sp" />
+
+        <TextView
+            android:id="@+id/text_revenues"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="3200$"
+            android:gravity="center"
+            android:layout_weight="1.0"
+            android:layout_gravity="center"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="#c9c9c9"
+            android:textSize="25sp" />
+
+        <TextView
+            android:id="@+id/textView3"
+           android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_gravity="center"
+            android:text="@string/expences_home"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="#5cb65e"
+            android:textSize="25sp" />
+
+        <TextView
+            android:id="@+id/text_expenses"
+           android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2100$"
+            android:gravity="center"
+            android:layout_weight="1.0"
+            android:layout_gravity="center"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="#c9c9c9"
+            android:textSize="25sp" />
+
+        <TextView
+            android:id="@+id/textView5"
+           android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_gravity="center"
+            android:text="@string/balance_home"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="#5cb65e"
+            android:textSize="35sp" />
+
+        <TextView
+            android:id="@+id/text_balance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="10dp"
+            android:text="1100$"
+            android:gravity="center"
+            android:layout_weight="1.0"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="#c9c9c9"
+            android:textSize="35sp" />
+
+    </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

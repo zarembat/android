@@ -219,25 +219,24 @@ if (operations.equals("Balance")){
 	protected String doInBackground(Object... params) {
 
 		currency = (String) params[0];
-		int current_user = (Integer) params[1];
-		String date = (String) params[2];
-		String operations = (String) params[3];
+		String date = (String) params[1];
+		String operations = (String) params[2];
 		
 		DatabaseHandler db = new DatabaseHandler(activity.getApplicationContext());
-		Currency _currency = db.getCurrency(currency, current_user, -1);
+		Currency _currency = db.getCurrency(currency, -1);
 		int currency_id = _currency.getCurrencyId();
 		
 		if (operations.equals("Revenues")) {
-			revenuesL = db.getRaportRevenues(current_user,date, currency_id);
-			revenueCategoriesL = db.getAllRevenueCategories(current_user);
+			revenuesL = db.getRaportRevenues(date, currency_id);
+			revenueCategoriesL = db.getAllRevenueCategories();
 		}
 		else if (operations.equals("Expenses")) {
-			expensesL = db.getRaportExpenses(current_user,date, currency_id);
-			expenseCategoriesL = db.getAllExpenseCategories(current_user);
+			expensesL = db.getRaportExpenses(date, currency_id);
+			expenseCategoriesL = db.getAllExpenseCategories(5);
 		}
 		else if (operations.equals("Balance")) {
-			expensesL = db.getRaportExpenses(current_user,date, currency_id);
-			revenuesL = db.getRaportRevenues(current_user,date, currency_id);
+			expensesL = db.getRaportExpenses(date, currency_id);
+			revenuesL = db.getRaportRevenues(date, currency_id);
 		}
 		
 		return operations;

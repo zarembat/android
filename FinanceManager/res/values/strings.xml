@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Finance Manager</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+
+    <string-array name="menus">
+        <item>Home</item>
+        <item>Last operations</item>
+        <item>Add operation</item>
+        <item>Raport</item>
+        <item>Statistics</item>
+        <item>Configuration</item>
+        <item>Settings</item>
+    </string-array>
+
+    <string name="drawer_open">Open Drawer</string>
+    <string name="drawer_close">Close Drawer</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="welcome">Welcome to Finance Manager!</string>
+    <string name="new_user"><u>Add new user</u></string>
+    <string name="login_text">Login</string>
+    
+    <array name="nav_drawer_icons">
+        <item>@drawable/home</item>
+        <item>@drawable/lastoper</item>
+        <item>@drawable/addoper</item>
+        <item>@drawable/raport</item>
+        <item>@drawable/stat</item>
+        <item>@drawable/conf</item>
+        <item>@drawable/sett</item>
+    </array>
+
+    <string name="desc_list_item_icon">Item Icon</string>
+	<string name="username">User name:</string>
+	<string name="password_text">Password:</string>
+	
+	<string name="revenues_home">Revenues:</string>
+	<string name="expences_home">Expences:</string>
+	<string name="balance_home">Balance:</string>
+	<string name="amount_string">Amount</string>
+	<string name="date_string">Date</string>
+	<string name="category">Category</string>
+	<string name="remarks">Remarks</string>
+	
+		
+	<string-array name="operations">
+		<item>Expense</item>
+		<item>Revenue</item>
+	</string-array>
+
+	
+		<string name="start_balance">Start balance:</string>
+		<string name="end_balance">End balance:</string>
+		<string name="export_raport">Export raport</string>
+		<string name="export_csv">Export to CSV</string>
+		<string name="export_google">Export to Google Doc</string>
+		<string name="change_password">Change password:</string>
+		<string name="new_password">New password:</string>
+		<string name="confirm_password">Confirm new password:</string>
+		<string name="new_category_expence">Add new expence category:</string>
+		<string name="new_category_revenue">Add new revenue category:</string>
+		<string name="change_currency">Change default currency:</string>
+		<string name="confirm_changes">Confirm changes</string>
+		<string name="password">Password:</string>
+		<string name="confirmpassword">Confirm password:</string>
+		<string name="add">Add user</string>
+		<string name="cancel">Cancel</string>
+		<string name="new_currency">Add new currency:</string>
+		<string name="add_operation">Add operation</string>
+		<string name="opt_currency">Currency (no sleection = default currency)</string>
+		<string name="piechart">Create PieChart</string>
+	
+</resources>

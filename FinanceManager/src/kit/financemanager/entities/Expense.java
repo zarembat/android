@@ -10,7 +10,6 @@ public class Expense {
 	private Date date;
 	private float ammount;
 	private String remarks;
-	private int authorId;
 
 	public int getExpenseId() {
 		return expenseId;
@@ -19,14 +18,6 @@ public class Expense {
 	public void setExpenseId(int expenseId) {
 		this.expenseId = expenseId;
 	}	
-	
-	public int getAuthorId() {
-		return authorId;
-	}
-	
-	public void setAuthorId(int authorId) {
-		this.authorId = authorId;
-	}
 	
 	public int getCategoryId() {
 		return categoryId;

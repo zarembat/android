@@ -28,7 +28,6 @@ public class SettingsFragment extends Fragment {
 	EditText confirm_password;
 	Button save;
 	Context context;
-	int current_user;
 	String currency;
 	
 	private static final String PREFERENCES_NAME = "myPreferences";
@@ -39,7 +38,6 @@ public class SettingsFragment extends Fragment {
 			Bundle savedInstanceState) {
 		
 		int position = getArguments().getInt("position");
-		current_user = getArguments().getInt("current_user");
 		String[] menus = getResources().getStringArray(R.array.menus);
 		View v = inflater.inflate(R.layout.fragment_settings, container, false);
 		getActivity().getActionBar().setTitle(menus[position]);
@@ -87,12 +85,10 @@ public class SettingsFragment extends Fragment {
 		if (new_password.getText().toString().trim().length() != 0){
 			
 			if(confirm_password.getText().toString().equals(new_password.getText().toString())){
-				DatabaseHandler db = new DatabaseHandler(context);
-				db.updateUserPassword(new_password.getText().toString(), current_user);
+				//DODAÆ ZMIENIANIE HAS£A
 				Toast.makeText(context, "Password changed!", Toast.LENGTH_SHORT).show();
 				new_password.setText("");
 				confirm_password.setText("");
-				db.close();
 			}
 			else
 				Toast.makeText(context, "Please confirm a new password correctly", Toast.LENGTH_SHORT).show();

@@ -33,7 +33,6 @@ public class LastOperationsFragment extends Fragment {
 	ListView listview;
 	Context context;
 	ListViewAdapter adapter;
-	int current_user;
 	
 	
 	@Override
@@ -41,7 +40,6 @@ public class LastOperationsFragment extends Fragment {
 			Bundle savedInstanceState) {
 		
 		int position = getArguments().getInt("position");
-		current_user = getArguments().getInt("current_user");
 		String[] menus = getResources().getStringArray(R.array.menus);
 		View v = inflater.inflate(R.layout.fragment_lastoper, container, false);
 		getActivity().getActionBar().setTitle(menus[position]);
@@ -53,8 +51,8 @@ public class LastOperationsFragment extends Fragment {
 		listViewItem = new ArrayList<ListViewItem>();
 		DatabaseHandler db = new DatabaseHandler(context);
 		List<Currency> currencies = db.getAllCurrencies();
-		List<Expense> expenseList = db.getLastExpenses(current_user);
-		List<Revenue> revenueList = db.getLastRevenues(current_user);
+		List<Expense> expenseList = db.getLastExpenses(5);
+		List<Revenue> revenueList = db.getLastRevenues(5);
 		int counter = 0;
 		if(expenseList != null){
 			
@@ -63,7 +61,7 @@ public class LastOperationsFragment extends Fragment {
 				SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd"); 
 				Date date = ex.getDate();
 				
-				ExpenseCategory expenseCategory = db.getExpenseCategory((String)null, ex.getCategoryId(), current_user);
+				ExpenseCategory expenseCategory = db.getExpenseCategory((String)null, ex.getCategoryId());
 				String currency = currencies.get(ex.getCurrencyId()-1).getName();
 						
 				if (counter == 0)
@@ -94,7 +92,7 @@ public class LastOperationsFragment extends Fragment {
 				SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd"); 
 				Date date = rv.getDate();
 				
-				RevenueCategory revenueCategory = db.getRevenueCategory((String)null, rv.getCategoryId(), current_user);
+				RevenueCategory revenueCategory = db.getRevenueCategory((String)null, rv.getCategoryId());
 				String currency = currencies.get(rv.getCurrencyId()-1).getName();
 				
 				if (counter == 0)

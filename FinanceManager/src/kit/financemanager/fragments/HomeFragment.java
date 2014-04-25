@@ -30,7 +30,6 @@ public class HomeFragment extends Fragment{
 	public TextView expenses;
 	public TextView revenues;
 	public TextView balance;
-	int current_user;
 	
 	private static final String PREFERENCES_NAME = "myPreferences";
     private static final String PREFERENCES_TEXT_FIELD = "EUR"; 
@@ -41,7 +40,6 @@ public class HomeFragment extends Fragment{
 			Bundle savedInstanceState) {
 		
 		int position = getArguments().getInt("position");
-		current_user = getArguments().getInt("current_user");
 		String[] menus = getResources().getStringArray(R.array.menus);
 		View v = inflater.inflate(R.layout.fragment_home, container, false);
 		getActivity().getActionBar().setTitle(menus[position]);
@@ -72,7 +70,7 @@ public class HomeFragment extends Fragment{
 		revenues = (TextView) v.findViewById(R.id.text_revenues);
 		balance = (TextView) v.findViewById(R.id.text_balance);
 		
-		new GetOperationsAsyncTask(getActivity(), this).execute(current_user, date);
+		new GetOperationsAsyncTask(getActivity(), this).execute(date);
 		
 		return v;
 	}

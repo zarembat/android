@@ -4,11 +4,9 @@ public class ExpenseCategory {
 
 	private int expenseCategoryId;
 	private String name;
-	private int authorId;
 	
-	public ExpenseCategory(String name, int id) {
+	public ExpenseCategory(String name) {
 		this.setName(name);
-		this.setAuthorId(id);
 	}
 	
 	public int getExpenseCategoryId() {
@@ -26,14 +24,5 @@ public class ExpenseCategory {
 	public void setName(String name) {
 		this.name = name;
 	}
-	
-	public int getAuthorId() {
-		return authorId;
-	}
-	
-	public void setAuthorId(int authorId) {
-		this.authorId = authorId;
-	}
-	
 	
 }

@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/backgr" >
+
+    <ScrollView
+        android:id="@+id/scrollView1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+            
+             <Spinner
+                 android:id="@+id/spinner_month"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_marginTop="40dp"
+                 android:layout_gravity="center"
+                 android:drawSelectorOnTop="true"/>
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="15dp"
+                android:text="@string/revenues_home"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="#5cb65e"
+                android:textSize="25sp" />
+
+            <TextView
+                android:id="@+id/raport_revenues"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="15dp"
+                android:gravity="center"
+            	android:layout_weight="1.0"
+                android:text="3000$"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="#c9c9c9"
+                android:textSize="25sp" />
+            
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="15dp"
+                android:text="@string/expences_home"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="#5cb65e"
+                android:textSize="25sp" />
+
+            <TextView
+                android:id="@+id/raport_expences"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="15dp"
+                android:gravity="center"
+            	android:layout_weight="1.0"
+                android:text="2100$"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="#c9c9c9"
+                android:textSize="25sp" />
+            
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="15dp"
+                android:text="@string/balance_home"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="#5cb65e"
+                android:textSize="30sp" />
+
+            <TextView
+                android:id="@+id/raport_balance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="15dp"
+                android:gravity="center"
+            	android:layout_weight="1.0"
+                android:text="1900$"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="#c9c9c9"
+                android:textSize="30sp" />
+
+            <CheckBox
+                android:id="@+id/checkBox_pdf"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="15dp"
+                android:text="@string/export_csv"
+                android:textSize="25sp"
+                android:textColor="#5cb65e" />
+
+            <CheckBox
+                android:id="@+id/checkBox_googledoc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="15dp"
+                android:text="@string/export_google"
+                android:textSize="25sp"
+                android:textColor="#5cb65e"/>
+            
+            <Button
+                android:id="@+id/raport"
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10sp"
+                android:layout_gravity="center"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="15dp"
+                android:background="@drawable/button"
+                android:onClick="onClickRaport"
+                android:text="@string/export_raport" 
+                android:textSize="18sp"/>
+            
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

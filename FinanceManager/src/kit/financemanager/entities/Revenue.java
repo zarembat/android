@@ -10,7 +10,6 @@ public class Revenue {
 	private Date date;
 	private float ammount;
 	private String remarks;
-	private int authorId;
 	
 	public int getRevenueId() {
 		return revenueId;
@@ -18,14 +17,6 @@ public class Revenue {
 	
 	public void setRevenueId(int revenueId) {
 		this.revenueId = revenueId;
-	}
-	
-	public int getAuthorId() {
-		return authorId;
-	}
-	
-	public void setAuthorId(int authorId) {
-		this.authorId = authorId;
 	}
 	
 	public int getCategoryId() {

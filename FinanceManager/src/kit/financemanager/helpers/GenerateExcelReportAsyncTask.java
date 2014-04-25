@@ -22,10 +22,9 @@ public class GenerateExcelReportAsyncTask extends AsyncTask<Object, Void, Intege
 		
 	    test.setContext(activity.getApplicationContext());
 	    test.setDate((String)params[0]);
-	    test.setUser((Integer)params[1]);
-	    test.setExpenses((String)params[2]);
-	    test.setRevenues((String)params[3]);
-	    test.setBalance((String)params[4]);
+	    test.setExpenses((String)params[1]);
+	    test.setRevenues((String)params[2]);
+	    test.setBalance((String)params[3]);
 	    
 	    try {
 			test.write();

@@ -31,8 +31,8 @@ public class GetOperationsForReportAsyncTask extends AsyncTask<Object, Void, Voi
 		int userId = (Integer) params[0];
 		String date = (String) params[1];
 		DatabaseHandler db = new DatabaseHandler(activity.getApplicationContext());
-        expensesL = db.getRaportExpenses(userId, date, -1);
-        revenuesL = db.getRaportRevenues(userId, date, -1);
+        expensesL = db.getRaportExpenses(date, -1);
+        revenuesL = db.getRaportRevenues(date, -1);
         currenciesL = db.getAllCurrencies();      
         return null;
 	}

@@ -26,13 +26,11 @@ public class ConfigurationFragment extends Fragment {
 	EditText currency;
 	Button save;
 	Context context;
-	int current_user;
 
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		
 		int position = getArguments().getInt("position");
-		current_user = getArguments().getInt("current_user");
 		String[] menus = getResources().getStringArray(R.array.menus);
 		View v = inflater.inflate(R.layout.fragment_configuration, container, false);
 		getActivity().getActionBar().setTitle(menus[position]);
@@ -66,8 +64,8 @@ public void addExpenseCategory(){
 		
 		if (category_expence.getText().toString().trim().length() != 0){
 			DatabaseHandler db = new DatabaseHandler(context);
-			if(!db.checkExpenseCategory(category_expence.getText().toString(), current_user)){
-				ExpenseCategory expenseCategory = new ExpenseCategory(category_expence.getText().toString(), current_user);
+			if(!db.checkExpenseCategory(category_expence.getText().toString())){
+				ExpenseCategory expenseCategory = new ExpenseCategory(category_expence.getText().toString());
 				db.addExpenseCategory(expenseCategory);
 				Toast.makeText(context, "Expense category added!", Toast.LENGTH_SHORT).show();
 				category_expence.setText("");
@@ -82,8 +80,8 @@ public void addExpenseCategory(){
 			
 		if (category_revenue.getText().toString().trim().length() != 0){
 			DatabaseHandler db = new DatabaseHandler(context);
-			if(!db.checkRevenueCategory(category_revenue.getText().toString(), current_user)){
-				RevenueCategory revenueCategory = new RevenueCategory(category_revenue.getText().toString(), current_user);
+			if(!db.checkRevenueCategory(category_revenue.getText().toString())){
+				RevenueCategory revenueCategory = new RevenueCategory(category_revenue.getText().toString());
 				db.addRevenueCategory(revenueCategory);
 				Toast.makeText(context, "Revenue category added!", Toast.LENGTH_SHORT).show();
 				db.close();
@@ -98,10 +96,9 @@ public void addExpenseCategory(){
 		
 		if (currency.getText().toString().trim().length() != 0){
 			DatabaseHandler db = new DatabaseHandler(context);
-			if(!db.checkCurrency(currency.getText().toString(), current_user)){
+			if(!db.checkCurrency(currency.getText().toString())){
 				Currency new_currency = new Currency();
 				new_currency.setName(currency.getText().toString());
-				new_currency.setAuthorId(current_user);
 				db.addCurrency(new_currency);
 				Toast.makeText(context, "Currency added!", Toast.LENGTH_SHORT).show();
 				currency.setText("");

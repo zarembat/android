@@ -41,7 +41,6 @@ public class WriteExcel {
 	  private WritableCellFormat times;
 	  private String inputFile;
 	  private Context context;
-	  private int current_user;
 	  private String date;
 	  private String expenses;
 	  private String revenues;
@@ -53,10 +52,6 @@ public class WriteExcel {
 	
 	public void setContext(Context context) {
 		  this.context = context;
-		  }
-	
-	public void setUser(int current_user) {
-		  this.current_user = current_user;
 		  }
 	
 	public void setDate(String date) {
@@ -131,8 +126,8 @@ public class WriteExcel {
 	      RowsExceededException {
 	    
 		DatabaseHandler db = new DatabaseHandler(context);  
-		List<Expense> expenseList = db.getRaportExpenses(current_user, date, -1);
-        List<Revenue> revenueList = db.getRaportRevenues(current_user,date, -1);
+		List<Expense> expenseList = db.getRaportExpenses(date, -1);
+        List<Revenue> revenueList = db.getRaportRevenues(date, -1);
         List<Currency> currencies = db.getAllCurrencies();
         List<Operation> operations = new ArrayList<Operation>();
         int counter = 0;
@@ -144,7 +139,7 @@ public class WriteExcel {
 				SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd"); 
 				Date date = ex.getDate();
 				
-				ExpenseCategory expenseCategory = db.getExpenseCategory((String)null, ex.getCategoryId(), current_user);
+				ExpenseCategory expenseCategory = db.getExpenseCategory((String)null, ex.getCategoryId());
 				String currency = currencies.get(ex.getCurrencyId()-1).getName();
 				
 				Float examount = ex.getAmmount();
@@ -185,7 +180,7 @@ public class WriteExcel {
 				BigDecimal revenue = new BigDecimal(a.toString());
 				Float revfloat = Float.parseFloat(revenue.toString());
 				
-				RevenueCategory revenueCategory = db.getRevenueCategory((String)null, rv.getCategoryId(), current_user);
+				RevenueCategory revenueCategory = db.getRevenueCategory((String)null, rv.getCategoryId());
 				String currency = currencies.get(rv.getCurrencyId()-1).getName();
 				
 				if (counter == 0)

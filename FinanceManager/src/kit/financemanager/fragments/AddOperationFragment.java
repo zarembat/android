@@ -48,7 +48,6 @@ public class AddOperationFragment extends Fragment {
 	EditText amount;
 	Context context;
 	Button add;
-	int current_user;
 	String _currency;
 	
 	List<String> expense_categories = new ArrayList<String>();
@@ -67,7 +66,6 @@ public class AddOperationFragment extends Fragment {
 			Bundle savedInstanceState) {
 		
 		int position = getArguments().getInt("position");
-		current_user = getArguments().getInt("current_user");
 		String[] menus = getResources().getStringArray(R.array.menus);
 		View v = inflater.inflate(R.layout.fragment_addoperation, container, false);
 		getActivity().getActionBar().setTitle(menus[position]);
@@ -84,13 +82,13 @@ public class AddOperationFragment extends Fragment {
 		spinner_currency = (Spinner) v.findViewById(R.id.spinner_currency);
 		
 	    DatabaseHandler db = new DatabaseHandler(context);
-		allExpenseCategories = db.getAllExpenseCategories(current_user);
+		allExpenseCategories = db.getAllExpenseCategories(5);
 		if(allExpenseCategories != null){
 			for (ExpenseCategory ec : allExpenseCategories) 
 				expense_categories.add(ec.getName().toString());
 	    }
 		
-		allRevenueCategories = db.getAllRevenueCategories(current_user);
+		allRevenueCategories = db.getAllRevenueCategories();
 		if(allRevenueCategories != null){
 			for (RevenueCategory rc : allRevenueCategories) 
 				revenue_categories.add(rc.getName().toString());
@@ -209,14 +207,13 @@ public class AddOperationFragment extends Fragment {
 						expense.setDate(_date);
 						
 						Currency currency = null;
-						currency = db.getCurrency(spinner_currency.getSelectedItem().toString(), current_user, -1);
+						currency = db.getCurrency(spinner_currency.getSelectedItem().toString(), -1);
 						expense.setCurrencyId(currency.getCurrencyId());
 			    		
-			    		ExpenseCategory expenseCategory = db.getExpenseCategory(spinner_category.getSelectedItem().toString(), -1, current_user);
+			    		ExpenseCategory expenseCategory = db.getExpenseCategory(spinner_category.getSelectedItem().toString(), -1);
 			    		expense.setCategoryId(expenseCategory.getExpenseCategoryId());
 			    		
 			    		expense.setRemarks(remarks.getText().toString());
-			    		expense.setAuthorId(current_user);
 			    		db.addExpense(expense);
 			    		Toast.makeText(context, "Expense added!", Toast.LENGTH_SHORT).show();
 		    		}
@@ -228,14 +225,13 @@ public class AddOperationFragment extends Fragment {
 		    			revenue.setDate(_date);
 		    			
 		    			Currency currency = null;
-						currency = db.getCurrency(spinner_currency.getSelectedItem().toString(), current_user, -1);
+						currency = db.getCurrency(spinner_currency.getSelectedItem().toString(), -1);
 						revenue.setCurrencyId(currency.getCurrencyId());
 			    		
-			    		RevenueCategory revenueCategory = db.getRevenueCategory(spinner_category.getSelectedItem().toString(), -1, current_user);
+			    		RevenueCategory revenueCategory = db.getRevenueCategory(spinner_category.getSelectedItem().toString(), -1);
 			    		revenue.setCategoryId(revenueCategory.getRevenueCategoryId());
 			    		
 			    		revenue.setRemarks(remarks.getText().toString());
-			    		revenue.setAuthorId(current_user);
 			    		db.addRevenue(revenue);
 			    		Toast.makeText(context, "Revenue added!", Toast.LENGTH_SHORT).show();
 		    		}

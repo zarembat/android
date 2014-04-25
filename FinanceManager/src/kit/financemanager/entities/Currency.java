@@ -4,7 +4,6 @@ public class Currency {
 	
 	private int currencyId;
 	private String name;
-	private int authorId;
 	
 	public int getCurrencyId() {
 		return currencyId;
@@ -21,16 +20,5 @@ public class Currency {
 	public void setName(String name) {
 		this.name = name;
 	}
-	
-	public int getAuthorId() {
-		return authorId;
-	}
-	
-	public void setAuthorId(int authorId) {
-		this.authorId = authorId;
-	}
-		
-		
-	
 
 }

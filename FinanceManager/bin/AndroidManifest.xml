@@ -16,23 +16,15 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="kit.financemanager.LoginActivity"
-            android:label="@string/app_name" 
+            android:name="kit.financemanager.MainActivity"
+            android:label="@string/title_activity_main"
+            android:parentActivityName="kit.financemanager.LoginActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-        <activity
-            android:name="kit.financemanager.MainActivity"
-            android:label="@string/title_activity_main"
-            android:parentActivityName="kit.financemanager.LoginActivity"
-            android:screenOrientation="portrait">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="kit.financemanager.LoginActivity" />
         </activity>
     </application>
 
